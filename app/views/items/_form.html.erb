@@ -1,0 +1,17 @@
+<%= form_tag '/items', method: :post do %>
+  <div>
+    <%= label_tag 'code', 'Item Code' %>
+    <%= text_field_tag 'code', item.code %>
+  </div>
+  <div>
+    <%= label_tag 'name', 'Item Name' %>
+    <%= text_field_tag 'name', item.name %>
+  </div>
+  <div>
+    <%= label_tag 'manufactured_by', 'Manufatured By' %>
+    <%= select_tag 'manufactured_by', options_for_select(Item.manufactured_bies.keys, item.manufactured_by) %>
+  </div>
+  <div>
+    <%= submit_tag 'Add' %>
+  </div>
+<% end %>

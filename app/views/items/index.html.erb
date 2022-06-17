@@ -1,0 +1,33 @@
+<h1>Items</h1>
+<hr>
+
+<%= link_to 'New', new_item_path %>
+<hr>
+
+<%= form_tag '/items', method: :get do %>
+  <div>
+    <%= text_field_tag 'q', @search %>
+    <%= submit_tag 'Search' %>
+    <%= submit_tag 'Clear' %>
+  </div>
+<% end %>
+<hr>
+
+<% if @items.present? %>
+  <table>
+    <thead>
+      <th>Code</th>
+      <th>Name</th>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.code %></td>
+          <td><%= item.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>There is no item.</p>
+<% end %>
