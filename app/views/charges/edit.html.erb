@@ -1,0 +1,17 @@
+<h1>Edit Item Charge</h1>
+<hr>
+
+<div class = "row">
+  <div class = "col-auto">
+    <strong>Code: </strong><%= @item.code %>
+  </div>
+  <div class = "col-auto">
+    <strong>Name: </strong><%= @item.name %>
+  </div>
+</div>
+<hr>
+
+<%= link_to 'Item', item_path(@item), class: 'btn btn-primary btn-sm' %>
+<hr>
+
+<%= render :partial => 'form', :locals => { :item => @item, :item_charge => @item_charge } %>

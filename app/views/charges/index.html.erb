@@ -1,0 +1,29 @@
+<h1>Item Charges</h1>
+<hr>
+
+<%= link_to 'New', new_item_charge_path(item_id: @item.id), class: 'btn btn-primary btn-sm' %>
+<hr>
+
+<% if @item_charges.present? %>
+  <table class="table table-striped">
+    <thead>
+      <th>Name</th>
+      <th>Amount</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <% @item_charges.each do |item_charge| %>
+        <tr>
+          <td><%= link_to item_charge.name, item_charge_path(item_id: @item.id, id: item_charge.id) %></td>
+          <td><%= item.amount %></td>
+          <td>
+            <%= link_to 'Edit', edit_item_charge_path(item_id: @item.id, id: item_charge), class: 'btn btn-primary btn-sm' %>
+            <%= link_to 'Delete', item_charge_path(item_id: @item.id, id: item_charge), method: :delete, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>There is no charge on this item.</p>
+<% end %>

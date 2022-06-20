@@ -1,29 +1,52 @@
 <h1>Items</h1>
 <hr>
 
-<%= link_to 'New', new_item_path %>
+<%= link_to 'New', new_item_path, class: 'btn btn-primary btn-sm' %>
 <hr>
 
 <%= form_tag '/items', method: :get do %>
-  <div>
-    <%= text_field_tag 'q', @search %>
-    <%= submit_tag 'Search' %>
-    <%= submit_tag 'Clear' %>
+  <div class="row">
+    <div class="col-auto">
+      <%= text_field_tag 'q', @search, class: "form-control" %>
+    </div>
+    <div class="col-auto">
+      <%= submit_tag 'Search', class: "btn btn-primary" %>
+    </div>
+    <div class="col-auto">
+      <%= submit_tag 'Clear', class: "btn btn-secondary" %>
+    </div>
   </div>
 <% end %>
 <hr>
 
 <% if @items.present? %>
-  <table>
+  <table class="table table-striped">
     <thead>
       <th>Code</th>
       <th>Name</th>
+      <th>Thick</th>
+      <th>ID</th>
+      <th>A/F</th>
+      <th>Weight</th>
+      <th>Unit</th>
+      <th>Manufactured By</th>
+      <th>Action</th>
     </thead>
     <tbody>
       <% @items.each do |item| %>
         <tr>
-          <td><%= item.code %></td>
+          <td><%= link_to item.code, item_path(item) %></td>
           <td><%= item.name %></td>
+          <td><%= item.thick %></td>
+          <td><%= item.item_id %></td>
+          <td><%= item.item_af %></td>
+          <td><%= item.weight %></td>
+          <td><%= item.unit %></td>
+          <td><%= item.manufactured_by %></td>
+          <td>
+            <%= link_to 'Edit', edit_item_path(item), class: 'btn btn-primary btn-sm' %>
+            <!-- <%= link_to 'Delete', item_path(item), method: :delete, class: 'btn btn-danger btn-sm' %> -->
+          </td>
         </tr>
       <% end %>
     </tbody>

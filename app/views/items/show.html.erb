@@ -1,0 +1,76 @@
+<h1>Display Item</h1>
+<hr>
+
+<%= link_to 'List', items_path, class: 'btn btn-primary btn-sm' %>
+<hr>
+
+<div class = "row mb-3">
+  <div class = "col-md-3">
+    <strong>Code: </strong><%= @item.code %><br>
+    <strong>Name: </strong><%= @item.name %><br>
+    <strong>Manufactured By: </strong><%= @item.manufactured_by %><br>
+    <strong>Last Changed At: </strong><%= @item.updated_at.strftime('%d/%m/%Y') %><br>
+  </div>
+  <div class = "col-md-3">
+    <strong>Thick: </strong><%= @item.thick %><br>
+    <strong>ID: </strong><%= @item.item_id %><br>
+    <strong>A/F: </strong><%= @item.item_af %><br>
+    <strong>Weight: </strong><%= @item.weight %><br>
+    <strong>Unit: </strong><%= @item.unit %><br>
+  </div>
+  <div class = "col-md-3">
+    <strong>Copper Price: </strong><%= @item.copper_price %><br>
+    <strong>Casting / Labour: </strong><%= @item.casting_labor %><br>
+    <strong>Burning Percentage: </strong><%= @item.burning_per %>%<br>
+    <strong>Profit Margin: </strong><%= @item.profit_margin %>%<br>  
+  </div>
+  <div class = "col-md-3">
+    <strong>Net Weight: </strong><%= @item.net_weight.round(3) %><br>
+    <strong>Require Rod: </strong><%= @item.require_rod.round(3) %><br>
+    <strong>Base Cost: </strong><%= @item.base_cost.round(3) %><br>
+    <strong>Cost Before Margin: </strong><%= @item.base_cost_before_margin.round(3) %><br>
+    <strong>Profit: </strong><%= @item.profit.round(3) %><br>
+    <strong>Final Cost: </strong><%= @item.final_cost.round(3) %><br>
+  </div>
+</div>
+<hr>
+
+
+<h3>Item Charges</h3>
+<hr>
+
+<%= link_to 'New Charge', new_item_charge_path(item_id: @item.id), class: 'btn btn-primary btn-sm' %>
+<hr>
+
+<div class = "row">
+  <div class = "col-md-6">
+    <% if @item_charges.present? %>
+      <table class="table table-striped">
+        <thead>
+          <th>Name</th>
+          <th>Amount</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <% @item_charges.each do |item_charge| %>
+            <tr>
+              <td><%= item_charge.name %></td>
+              <td><%= item_charge.amount %></td>
+              <td>
+                <%= link_to 'Edit', edit_item_charge_path(item_id: @item.id, id: item_charge), class: 'btn btn-primary btn-sm' %>
+                <!-- <%= link_to 'Delete', item_charge_path(item_id: @item.id, id: item_charge), method: 'delete', class: 'btn btn-danger btn-sm' %> -->
+              </td>
+            </tr>
+          <% end %>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong><%= @item.total_charges %></strong></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    <% else %>
+      <p>There is no charge on this item.</p>
+    <% end %>
+  </div>
+</div>

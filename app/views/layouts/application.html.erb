@@ -11,9 +11,10 @@
   </head>
 
   <body>
-    <%= link_to 'Home', root_path %> |
-    <%= link_to 'Items', items_path %>
-    <hr>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    <%= render 'layouts/flash_messages' %>
+    <main class="col-md-9 ms-sm-auto col-lg-12 px-md-4">
+      <%= yield %>
+    </main>
   </body>
 </html>

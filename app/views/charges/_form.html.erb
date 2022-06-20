@@ -1,0 +1,22 @@
+<% url = params[:action] == 'new' ? "/items/#{item.id}/charges" : "/items/#{item.id}/charges/#{item_charge.id}" %>
+<% form_method = params[:action] == 'new' ? "post" : "patch" %>
+
+<%= form_tag url, method: form_method do %>
+  <div class="row mb-4">
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'name', 'Name', class: "form-label" %>
+      <%= select_tag 'name', options_for_select(ItemCharge::CHARGE_OPTIONS, item_charge.name), class: "form-select" %>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'amount', 'Amount', class: "form-label" %>
+      <%= text_field_tag 'amount', item_charge.amount, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-auto">
+      <%= submit_tag 'Submit', class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

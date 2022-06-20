@@ -1,17 +1,70 @@
-<%= form_tag '/items', method: :post do %>
-  <div>
-    <%= label_tag 'code', 'Item Code' %>
-    <%= text_field_tag 'code', item.code %>
+<% url = params[:action] == 'new' ? "/items" : "/items/#{item.id}" %>
+<% form_method = params[:action] == 'new' ? "post" : "patch" %>
+
+<%= form_tag url, method: form_method do %>
+  <div class="row mb-4">
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'code', 'Code', class: "form-label", class: "form-label" %>
+      <%= text_field_tag 'code', item.code, class: "form-control", class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'name', 'Name', class: "form-label" %>
+      <%= text_field_tag 'name', item.name, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'thick', 'Thick', class: "form-label" %>
+      <%= text_field_tag 'thick', item.thick, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'item_id', 'ID', class: "form-label" %>
+      <%= text_field_tag 'item_id', item.item_id, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'item_af', 'A/F', class: "form-label" %>
+      <%= text_field_tag 'item_af', item.item_af, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'weight', 'Weight', class: "form-label" %>
+      <%= text_field_tag 'weight', item.weight, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'unit', 'Unit', class: "form-label" %>
+      <%= text_field_tag 'unit', item.unit, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'manufactured_by', 'Manufatured By', class: "form-label" %>
+      <%= select_tag 'manufactured_by', options_for_select(Item.manufactured_bies.keys, item.manufactured_by), class: "form-select" %>
+    </div>
   </div>
-  <div>
-    <%= label_tag 'name', 'Item Name' %>
-    <%= text_field_tag 'name', item.name %>
+  <div class="row mb-4">
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'copper_price', 'Copper Price', class: "form-label" %>
+      <%= text_field_tag 'copper_price', item.copper_price, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'casting_labor', 'Casting / Labor', class: "form-label" %>
+      <%= text_field_tag 'casting_labor', item.casting_labor, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'burning_per', 'Burning Percentage', class: "form-label" %>
+      <%= text_field_tag 'burning_per', item.burning_per, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'profit_margin', 'Profit Margin Per.', class: "form-label" %>
+      <%= text_field_tag 'profit_margin', item.profit_margin, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'net_weight', 'Net Weight', class: "form-label" %>
+      <%= text_field_tag 'net_weight', item.net_weight, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2 col-md-3">
+      <%= label_tag 'require_rod', 'Require Rod', class: "form-label" %>
+      <%= text_field_tag 'require_rod', item.require_rod, class: "form-control" %>
+    </div>
   </div>
-  <div>
-    <%= label_tag 'manufactured_by', 'Manufatured By' %>
-    <%= select_tag 'manufactured_by', options_for_select(Item.manufactured_bies.keys, item.manufactured_by) %>
-  </div>
-  <div>
-    <%= submit_tag 'Add' %>
+  <div class="row">
+    <div class="col-auto">
+      <%= submit_tag 'Submit', class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>

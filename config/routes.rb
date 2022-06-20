@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   
   root 'homes#index'
 
-  resources :items
+  resources :items do
+    resources :charges, except: [:index] do
+    end
+  end
 
 end
