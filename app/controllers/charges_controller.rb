@@ -41,7 +41,7 @@ class ChargesController < ApplicationController
     else
       flash[:alert] = "Item not deleted"
     end
-    item_charges_path(item_id: @item)
+    redirect_to item_path(@item)
   end
 
   private
